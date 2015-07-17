@@ -24,8 +24,9 @@ type battle struct {
 }
 
 type player struct {
-	ID   int32
-	Conn *websocket.Conn
+	UID      int32
+	UserName string
+	Conn     *websocket.Conn
 }
 
 type jsonMessage struct {
