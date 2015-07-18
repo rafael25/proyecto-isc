@@ -1,0 +1,23 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Cliente del juego de batallas de barcos",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafael25/proyecto-isc.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/rafael25/proyecto-isc/issues"
+  },
+  "homepage": "https://github.com/rafael25/proyecto-isc#readme",
+  "dependencies": {
+    "vue": "^0.12.7",
+    "vue-resource": "^0.1.10"
+  }
+}

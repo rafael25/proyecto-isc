@@ -1,0 +1,32 @@
+.login-modal {
+    /*background: #232b33;*/
+    /*background: #263238;*/
+    /*background: #577381;*/
+    background: #8A99A0;
+}
+
+.login-card {
+    margin-top: 10vh;
+}
+
+.login-card.mld-card {
+    width: 320px;
+    hight: 320px;
+}
+
+.mdl-card__actions {
+    text-align: left;
+}
+
+.mdl-card__supporting-text {
+    text-align: center;
+}
+
+.login-card > .mdl-card__title {
+    color: #fff;
+    height: 200px;
+    text-align: left;
+    background-size: cover;
+    text-shadow: 5px 5px 5px #333333;
+    background: url('../img/ship.jpg') bottom right 15% no-repeat #46B6AC;
+}
