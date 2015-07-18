@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"log"
@@ -11,31 +12,26 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// clients almacena las conexiones de los usuarios identificadas por un uuid
-var clients map[int32]*websocket.Conn
+// players almacena las conexiones de los usuarios identificadas por un uuid
+var players map[int32]player
 
 // battles relaciona los jugadores involucrados en una batalla
 var battles map[int32]battle
-var unaBatalla battle
 
 type battle struct {
-	PlayerOne int32
-	PlayerTwo int32
+	PlayerOne player
+	PlayerTwo player
 }
 
 type player struct {
-	UID      int32
-	UserName string
-	Conn     *websocket.Conn
-}
-
-type jsonMessage struct {
-	Message string `json:"message"`
+	UID      int32           `json:"uid"`
+	UserName string          `json:"userName"`
+	Conn     *websocket.Conn `json:"-"`
 }
 
 func init() {
 	rand.Seed(time.Now().Unix())
-	clients = make(map[int32]*websocket.Conn)
+	players = make(map[int32]player)
 	battles = make(map[int32]battle)
 }
 
@@ -43,6 +39,7 @@ func main() {
 	port := flag.Int("port", 3000, "port to serve on")
 	flag.Parse()
 
+	http.HandleFunc("/login", loginHandler)
 	http.HandleFunc("/ws", wsHandler)
 
 	log.Printf("Running on port %d\n", *port)
@@ -53,7 +50,7 @@ func main() {
 	fmt.Println(err.Error())
 }
 
-// wsHandler realiza la comunicacion entre cliente y servidor usando websockets
+// wsHandler eleva la conexio http con el cliente a websockets
 func wsHandler(w http.ResponseWriter, r *http.Request) {
 	conn, err := websocket.Upgrade(w, r, nil, 1024, 1024)
 	if _, ok := err.(websocket.HandshakeError); ok {
@@ -63,54 +60,38 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
+	var data struct {
+		UserName string `json:"userName"`
+		UID      int32  `json:"uid"`
+	}
+	conn.ReadJSON(&data)
+	uid := data.UID
+	if _, ok := players[uid]; !ok {
+		log.Println("EL jugador con uid", uid, "no tiene sesión iniciada")
+	} else {
+		log.Println("El jugador con uid", uid, "inicio conexión websocket")
+	}
+}
+
+func loginHandler(w http.ResponseWriter, r *http.Request) {
+	var newPlayer player
+	var data struct {
+		UserName string `json:"userName"`
+	}
+	decoder := json.NewDecoder(r.Body)
+	if err := decoder.Decode(&data); err != nil {
+		log.Fatal(err)
+		return
+	}
 	uid := rand.Int31()
-	clients[uid] = conn
-	log.Println("Succesfully upgraded connection whit id:", uid)
-
-	if err = conn.WriteJSON(uid); err != nil {
-		log.Println(err)
-		conn.Close()
+	newPlayer.UID = uid
+	newPlayer.UserName = data.UserName
+	players[uid] = newPlayer
+	w.Header().Set("Content-Type", "application/json")
+	encoder := json.NewEncoder(w)
+	if err := encoder.Encode(newPlayer); err != nil {
+		log.Fatal(err)
 		return
 	}
-
-	unaBatalla.crearConexion(uid)
-	log.Printf("%+v", unaBatalla)
-
-	var message jsonMessage
-	for {
-		err := conn.ReadJSON(&message)
-		if err != nil {
-			log.Println(err)
-			conn.Close()
-			return
-		}
-		log.Printf("%+v", message)
-
-		enviarAJugadores(message)
-	}
-}
-
-func enviarAJugadores(m jsonMessage) {
-	connOne := clients[unaBatalla.PlayerOne]
-	connTwo := clients[unaBatalla.PlayerTwo]
-
-	if err := connOne.WriteJSON(m); err != nil {
-		log.Println(err)
-		connOne.Close()
-		return
-	}
-
-	if err := connTwo.WriteJSON(m); err != nil {
-		log.Println(err)
-		connTwo.Close()
-		return
-	}
-}
-
-func (b *battle) crearConexion(player int32) {
-	if b.PlayerOne == 0 {
-		b.PlayerOne = player
-	} else if b.PlayerTwo == 0 {
-		b.PlayerTwo = player
-	}
+	log.Printf("Jugador %+v ha iniciado sesión", newPlayer)
 }
