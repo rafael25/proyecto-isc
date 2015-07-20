@@ -26,7 +26,7 @@
     color: #fff;
     height: 200px;
     text-align: left;
-    background-size: cover;
     text-shadow: 5px 5px 5px #333333;
     background: url('../img/ship.jpg') bottom right 15% no-repeat #46B6AC;
+    background-size: cover;
 }
