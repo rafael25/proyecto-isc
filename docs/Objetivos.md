@@ -2,11 +2,10 @@
 
 ## General
 
-Desarrollar un videojuego para plataformas móviles basado en el juego de mesa clásico batalla naval que satisfaga la necesidad de entretenimiento y diversión de los jugadores.
+Transformar el juego de mesa 'Batalla naval' a formato digital para llevarlo a una audiencia mayor, a través de Internet, donde miles de jugadores puedan participar simultáneamente.
 
 ## Particulares
 
-1. Que el videojuego se adapte a la plataforma.
-2. Desarrollar el sistema que sincronice los movimientos de los jugadores.
-3. Desarrollar la interfaz gráfica del juego.
-4. Desarrollar el sistema que ubique a los jugadores disponibles.
+1. Evitar que los jugadores realicen acciones no permitidas, usando restricciones a nivel de programación.
+2. Eliminar la limitación de distancia entre los jugadores que desean participar en una partida; usando para ello Internet.
+3. De la misma manera, permitir que los jugadores inicien una partida con otros jugadores sin ser necesario conocerlos.
