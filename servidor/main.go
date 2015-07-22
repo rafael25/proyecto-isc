@@ -10,29 +10,19 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+	"github.com/rafael25/proyecto-isc/servidor/game"
 )
 
 // players almacena las conexiones de los usuarios identificadas por un uuid
-var players map[int32]player
+var players map[int32]game.Player
 
 // battles relaciona los jugadores involucrados en una batalla
-var battles map[int32]battle
-
-type battle struct {
-	PlayerOne player
-	PlayerTwo player
-}
-
-type player struct {
-	UID      int32           `json:"uid"`
-	UserName string          `json:"userName"`
-	Conn     *websocket.Conn `json:"-"`
-}
+var battles map[int32]game.Battle
 
 func init() {
 	rand.Seed(time.Now().Unix())
-	players = make(map[int32]player)
-	battles = make(map[int32]battle)
+	players = make(map[int32]game.Player)
+	battles = make(map[int32]game.Battle)
 }
 
 func main() {
@@ -60,21 +50,27 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
+	defer conn.Close()
+
 	var data struct {
 		UserName string `json:"userName"`
 		UID      int32  `json:"uid"`
 	}
-	conn.ReadJSON(&data)
-	uid := data.UID
-	if _, ok := players[uid]; !ok {
-		log.Println("EL jugador con uid", uid, "no tiene sesión iniciada")
+	if err := conn.ReadJSON(&data); err != nil {
+		log.Fatal(err)
+		return
+	}
+	if p, ok := players[data.UID]; ok {
+		p.Conn = conn
+		log.Println("El jugador con uid", data.UID, "inició conexión websocket")
 	} else {
-		log.Println("El jugador con uid", uid, "inicio conexión websocket")
+		log.Println("EL jugador con uid", data.UID, "no tiene sesión iniciada")
+		return
 	}
 }
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
-	var newPlayer player
+	var newPlayer game.Player
 	var data struct {
 		UserName string `json:"userName"`
 	}
