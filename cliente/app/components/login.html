@@ -9,6 +9,10 @@
                     <input v-model="user.userName" class="mdl-textfield__input" type="text" id="user-name"/>
                     <label class="mdl-textfield__label" for="user-name">Nombre de usuario</label>
                 </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input v-model="conn.server" class="mdl-textfield__input" type="text" id="server-url"/>
+                    <label class="mdl-textfield__label" for="server-url">URL de Servidor</label>
+                </div>
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <button v-on="click: login" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

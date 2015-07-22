@@ -14,7 +14,7 @@ module.exports = {
                 .success(function (data, status, request) {
                     this.user.uid = data.uid;
 
-                    var ws = new WebSocket('ws://localhost:3000/ws');
+                    var ws = new WebSocket(this.conn.server);
                     this.conn.ws = ws;
                     ws.addEventListener('open', this.wsOnOpen);
                 });

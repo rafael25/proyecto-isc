@@ -2,6 +2,7 @@ var Vue = require('vue');
 Vue.$http = require('vue-resource')(Vue);
 
 Vue.component('login', require('../components/login.js'));
+Vue.component('board', require('../components/board.js'));
 
 new Vue({
     el: "#main",
@@ -13,6 +14,7 @@ new Vue({
         },
 
         conn: {
+            server: 'ws://localhost:3000/ws',
             ws: null
         },
 
