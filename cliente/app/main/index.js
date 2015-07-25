@@ -18,7 +18,7 @@ new Vue({
             ws: null
         },
 
-        component: 'login',
+        component: 'board',
 
         messages: []
     },

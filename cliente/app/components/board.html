@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-xs">
+        <div class="row"
+             v-repeat="yCord: y">
+            <div class="col-xs board-box"
+                 v-repeat="xCord: x"
+                 v-on="click: cordClicked(xCord, yCord)">
+                {{xCord}}, {{yCord}}
+            </div>
+        </div>
+    </div>
+    <div class="col-xs">
+        <div class="row">
+            <p>Otro tablero</p>
+        </div>
+    </div>
+</div>
