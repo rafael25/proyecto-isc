@@ -3,7 +3,7 @@ var fs = require('fs');
 module.exports = {
     template: fs.readFileSync('components/login.html', 'utf8'),
 
-    props: ['conn', 'user', 'onLogin'],
+    props: ['conn', 'user', 'changeComponent'],
 
     methods: {
         login: function () {
@@ -22,7 +22,7 @@ module.exports = {
 
         wsOnOpen: function () {
             this.conn.ws.send(JSON.stringify(this.user));
-            this.onLogin();
+            this.changeComponent('board');
         },
     }
 }

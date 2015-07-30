@@ -24,8 +24,8 @@ new Vue({
     },
 
     methods: {
-        onLogin: function () {
-            this.component = 'board';
+        changeComponent: function (component){
+            this.component = component;
         }
     }
 });
