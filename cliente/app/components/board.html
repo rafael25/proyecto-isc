@@ -1,17 +1,38 @@
-<div class="row">
-    <div class="col-xs">
+<div class="row center-xs">
+    <div class="col-xs-9 board">
         <div class="row"
-             v-repeat="yCord: y">
+             v-repeat="boxList: boxes">
             <div class="col-xs board-box"
-                 v-repeat="xCord: x"
-                 v-on="click: cordClicked(xCord, yCord)">
-                {{xCord}}, {{yCord}}
+                 v-repeat="box: boxList"
+                 v-class="used: box.used"
+                 v-on="click: boxSelected(box)">
             </div>
         </div>
     </div>
-    <div class="col-xs">
-        <div class="row">
-            <p>Otro tablero</p>
-        </div>
+</div>
+<div class="row">
+    <div class="col-xs ship-radio-button">
+        <label for="grande" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+            <input v-model="ship" id="grande" class="mdl-radio__button" type="radio" name="ship" value="4" checked />
+            <span class="mdl-radio__label">Grande</span>
+        </label>
+    </div>
+    <div class="col-xs ship-radio-button">
+        <label for="mediano" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+            <input v-model="ship" id="mediano" class="mdl-radio__button" type="radio" name="ship" value="3" />
+            <span class="mdl-radio__label">Mediano</span>
+        </label>
+    </div>
+    <div class="col-xs ship-radio-button">
+        <label for="pequeno" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+            <input v-model="ship" id="pequeno" class="mdl-radio__button" type="radio" name="ship" value="2" />
+            <span class="mdl-radio__label">Pequeño</span>
+        </label>
+    </div>
+    <div class="col-xs ship-radio-button">
+        <label for="minusculo" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+            <input v-model="ship" id="minusculo" class="mdl-radio__button" type="radio" name="ship" value="1" />
+            <span class="mdl-radio__label">Minusculo</span>
+        </label>
     </div>
 </div>

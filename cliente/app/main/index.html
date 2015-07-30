@@ -7,13 +7,11 @@
     <link rel="stylesheet" href="../assets/css/flexboxgrid.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
-<body class="login-modal">
+<body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <main class="mdl-layout__content">
+        <main id="main" class="mdl-layout__content">
             <div class="page-content">
-                <div id="main">
-                    <component is="{{component}}" conn="{{conn}}" user="{{user}}" change-component="{{changeComponent}}" v-transition="fade" transition-mode="out-in"></component>
-                </div>
+                <component is="{{component}}" conn="{{conn}}" user="{{user}}" change-component="{{changeComponent}}" v-transition="fade" transition-mode="out-in"></component>
             </div>
         </main>
     </div>

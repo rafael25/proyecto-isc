@@ -2,11 +2,12 @@
     padding: 0.7rem 1rem;
 }
 
-.login-modal {
+.mdl-layout__content {
     /*background: #232b33;*/
     /*background: #263238;*/
     /*background: #577381;*/
-    background: #8A99A0;
+    /*background: #8A99A0;*/
+    background: #C4D1EA;
 }
 
 .login-card {
@@ -44,9 +45,22 @@
     opacity: 0;
 }
 
+.board {
+    border: 3px solid #FFF;
+    background: url('../img/wood.png');
+}
+
 .board-box {
-    width: 31px;
-    height: 31px;
-    margin: 2px;
-    background: #4CE49E;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    min-width: 40px;
+    min-height: 40px;
+    margin: 0;
+}
+
+.used {
+    background-color: #DBA4A4;
+}
+
+.ship-radio-button {
+    text-align: center;
 }
