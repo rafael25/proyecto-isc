@@ -1,0 +1,33 @@
+/**
+ * Compilar con graphviz dot:
+ * dot -Tpng Ruta-Critica.dot -o RutaCritica.png
+ */
+digraph G {
+	rankdir="LR";
+	splines=ortho;
+	bgcolor="transparent";
+	node [shape=record];
+
+	/* Procesos */
+	s1 [label="Diseño de tablas de \n usuarios registrados | {1|RV|1}"];
+	s2 [label="Diseño de tablas de \n perfiles de usuarios | {2|RV|1}"];
+	s3 [label="Diseño del modelo de \n comunicación entre \n cliente y servidor | {3|RV|2}"];
+
+	s4 [label="Desarrollo del modulo \n de registro de usuario | {4|RV|2}"];
+	s5 [label="Desarrollo del modulo \n de inicio de sesión | {5|RV|1}"];
+
+	s6 [label="Desarrollo del modulo de \n construcción de tablero | {6|RV|4}"];
+	s7 [label="Desarrollo del modulo de \n sincronización de tableros | {7|RV|8}"];
+	s8 [label="Desarrollo del modulo de \n gestión de perfil | {8|RV|5}"];
+	s9 [label="Desarrollo del modulo de \n administración de usuarios \n conectados | {9|RV|3}"];
+
+	/* Rutas */
+	s1 -> s4;
+	s2 -> s4;
+	s3 -> s4;
+	s4 -> s5;
+	s5 -> s6;
+	s5 -> s8;
+	s5 -> s9;
+	s6 -> s7;
+}
