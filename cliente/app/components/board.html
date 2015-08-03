@@ -10,29 +10,20 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs ship-radio-button">
-        <label for="grande" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-            <input v-model="ship" id="grande" class="mdl-radio__button" type="radio" name="ship" value="4" checked />
-            <span class="mdl-radio__label">Grande</span>
-        </label>
-    </div>
-    <div class="col-xs ship-radio-button">
-        <label for="mediano" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-            <input v-model="ship" id="mediano" class="mdl-radio__button" type="radio" name="ship" value="3" />
-            <span class="mdl-radio__label">Mediano</span>
-        </label>
-    </div>
-    <div class="col-xs ship-radio-button">
-        <label for="pequeno" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-            <input v-model="ship" id="pequeno" class="mdl-radio__button" type="radio" name="ship" value="2" />
-            <span class="mdl-radio__label">Pequeño</span>
-        </label>
-    </div>
-    <div class="col-xs ship-radio-button">
-        <label for="minusculo" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
-            <input v-model="ship" id="minusculo" class="mdl-radio__button" type="radio" name="ship" value="1" />
-            <span class="mdl-radio__label">Minusculo</span>
-        </label>
+<div class="row ships-row">
+    <div v-repeat="ship: ships" class="col-xs ship-radio-button">
+        <div class="mdl-card mdl-shadow--2dp ship-card">
+            <div class="mdl-card__supporting-text">
+                <label for="{{ ship.name }}" class="mdl-radio mdl-js-radio mdl-js-ripple-effect">
+                    <input v-model="shipSize" id="{{ ship.name }}" class="mdl-radio__button" type="radio" name="ship" value="{{ ship.size }}" checked />
+                    <span class="mdl-radio__label">{{ ship.name | capitalize }}</span>
+                </label>
+                <p>Tamaño: <strong>{{ ship.size }} casillas</strong></p>
+                <div v-if="ship.size > 1" class="ship-acctions">
+                    <button v-on="click: rotateShip(ship, 'v')" v-class="mdl-button--accent: ship.dir === 'v'" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">Vertical</button>
+                    <button v-on="click: rotateShip(ship, 'h')" v-class="mdl-button--accent: ship.dir === 'h'" class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--raised mdl-button--colored">Horizontal</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

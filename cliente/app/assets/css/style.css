@@ -61,6 +61,15 @@
     background-color: #DBA4A4;
 }
 
+.ships-row {
+    margin-top: 1rem;
+}
+
+.ship-card {
+    width: 100%;
+    min-height: 100px;
+}
+
 .ship-radio-button {
     text-align: center;
 }
