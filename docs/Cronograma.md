@@ -1,7 +1,7 @@
 # Cronograma
 
 No.  | Proceso                                                        | Tiempo
------|----------------------------------------------------------------|--------
+----:|----------------------------------------------------------------|:------:
  1   | Diseño de tablas de usuarios registrados                       | 1
  2   | Diseño de tablas de perfiles de usuarios                       | 1
  3   | Diseño del modelo de comunicación entre cliente y servidor     | 1
