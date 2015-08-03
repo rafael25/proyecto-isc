@@ -13,3 +13,7 @@ No.  | Proceso                                                        | Tiempo
  9   | Desarrollo del modulo de administración de usuarios conectados | 3
 
 \* _Tiempo en días_
+
+# Ruta Critica
+
+![Diagrama de Red](RutaCritica.png)
