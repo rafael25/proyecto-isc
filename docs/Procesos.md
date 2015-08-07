@@ -19,7 +19,7 @@
 - Se validan los datos ingresados con la base de datos.
 
 - Al ser correcto se establece la sesión del usuario y acceso al software.
--
+
 ## Construccion de Tablero
 
 -Se generara el tablero en ambos jugadores para poder visualizar los campos con lo que se contaran disponibles.
