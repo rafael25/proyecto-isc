@@ -1,5 +1,7 @@
 # Cronograma
 
+## Tabla de Procesos
+
 No.  | Proceso                                                        | Tiempo
 ----:|----------------------------------------------------------------|:------:
  1   | Diseño de tablas de usuarios registrados                       | 1
@@ -14,6 +16,14 @@ No.  | Proceso                                                        | Tiempo
 
 \* _Tiempo en días_
 
+## Cronograma
+
+![Cronograma](Cronograma.pdf)
+
 # Ruta Critica
 
-![Diagrama de Red](RutaCritica.png)
+La ruta critica del proyecto comprende los procesos 3, 4, 5, 6 y 7. Para una mejor visualización se proporciona el siguiente diagrama de red.
+
+## Diagrama de Red
+
+![Diagrama de Red con Ruta Critica](RutaCritica.pdf)

@@ -1,12 +1,12 @@
 /**
  * Compilar con graphviz dot:
- * dot -Tpng Ruta-Critica.dot -o RutaCritica.png
+ * dot -Tpdf Ruta-Critica.dot -o RutaCritica.pdf
  */
 digraph G {
 	rankdir="LR";
 	splines=ortho;
 	bgcolor="transparent";
-	node [shape=record];
+	node [shape=record fontname="Liberation Sans"];
 	fontsize=18;
 
 	/* Procesos */
